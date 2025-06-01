@@ -9,12 +9,14 @@ module Demo {
     }
 }
 
+
 module Perfectos{
+    sequence<int> arrayNumbers;
     interface Worker{
-        int[] encontrarPerfectos(int star, int finish);
+    arrayNumbers encontrarPerfectos(int star, int finish);
     }
 
     interface Coordinador{
-        int[] crearRangosWorkers(int finish, int numberWorkers);
+    arrayNumbers crearRangosWorkers(int finish, int numberWorkers);
     }
 }
