@@ -8,3 +8,13 @@ module Demo {
         void removeSubscriber(string name);
     }
 }
+
+module Perfectos{
+    interface Worker{
+        int[] encontrarPerfectos(int star, int finish);
+    }
+
+    interface Coordinador{
+        int[] crearRangosWorkers(int finish, int numberWorkers);
+    }
+}

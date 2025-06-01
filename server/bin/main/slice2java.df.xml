@@ -1,8 +1,0 @@
-<state>
-  <timestamp value='1748355433212' />
-  <sourceSet name='default'>
-    <source name='C:\Users\USUARIO\OneDrive - Universidad Icesi\5° semestre\compunet\Computacion-I-2025-1\09_ice_gradle\App.ice' />
-    <arg value='C:\Program Files\ZeroC\Ice-3.7.10\\bin\slice2java.exe' />
-    <arg value='-IC:\Program Files\ZeroC\Ice-3.7.10\\slice' />
-  </sourceSet>
-</state>
