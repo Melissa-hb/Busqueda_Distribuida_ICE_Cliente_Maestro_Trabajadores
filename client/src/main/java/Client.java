@@ -1,27 +1,40 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import com.zeroc.Ice.*;
-import Demo.*;
+
+import Demo.*; 
 
 public class Client {
     public static void main(String[] args) {
-        try (Communicator communicator = Util.initialize(args, "properties.cfg")) {
+    	try(Communicator communicator = Util.initialize(args, "properties.cfg")) {
 
-            ObjectAdapter adapter = communicator.createObjectAdapter("Subscriber");
+            Suscriber suscriber = new SuscriberI(); 
 
-            Demo.Subscriber subscriberImpl = new SubscriberI();
-            ObjectPrx proxy = adapter.add(subscriberImpl, Util.stringToIdentity("NN"));
-            adapter.activate();
+            ObjectAdapter adapter = communicator.createObjectAdapter("Suscriber"); 
 
-            SubscriberPrx subscriberPrx = SubscriberPrx.checkedCast(proxy);
+            ObjectPrx proxys = adapter.add(suscriber, Util.stringToIdentity("NN"));
 
-            PublisherPrx publisher = PublisherPrx.checkedCast(
-                communicator.propertyToProxy("publisher.proxy"));
+            adapter.activate(); 
 
-            if (publisher == null) {
-                System.err.println("Invalid proxy");
-                return;
+            SuscriberPrx suscriberPrx = SuscriberPrx.checkedCast(proxys);
+
+            PublisherPrx publisher = PublisherPrx.checkedCast(communicator.propertyToProxy("publisher.proxy")); 
+
+            if(publisher == null){
+                throw new Error("Bat Ice Proxy"); 
             }
 
-            publisher.addSubscriber("NN", subscriberPrx);
-        }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
+            String name = reader.readLine(); 
+
+            publisher.addSuscriber(name, suscriberPrx);
+            communicator.waitForShutdown();
+    	}
+	catch(IOException e){
+	    e.printStackTrace();
+	}
     }
 }

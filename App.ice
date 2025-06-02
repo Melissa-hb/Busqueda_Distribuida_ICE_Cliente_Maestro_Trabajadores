@@ -1,11 +1,11 @@
 module Demo {
-    interface Subscriber {
+    interface Suscriber {
         void onUpdate(string s);
     }
 
     interface Publisher {
-        void addSubscriber(string name, Subscriber* o);
-        void removeSubscriber(string name);
+        void addSuscriber(string name, Suscriber* o);
+        void removeSuscriber(string name);
     }
 }
 

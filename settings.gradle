@@ -5,6 +5,6 @@
  * For more detailed information on multi-project builds, please refer to https://docs.gradle.org/8.14/userguide/multi_project_builds.html in the Gradle documentation.
  */
 
-rootProject.name = '09_ice_gradle'
+rootProject.name = 'Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores'
 include 'client'
 include 'server'
