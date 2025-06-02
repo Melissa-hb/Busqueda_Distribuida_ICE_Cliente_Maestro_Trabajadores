@@ -11,7 +11,7 @@ public class Server {
 
 	    ObjectAdapter adapter = communicator.createObjectAdapter("services"); 
 
-	    PublisherI publisher = new PublisherI(); 
+	    CoordinadorI publisher = new CoordinadorI(); 
 
 	    adapter.add(publisher, Util.stringToIdentity("Publisher"));
 	    adapter.activate();
