@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.zeroc.Ice.*; 
+import com.zeroc.Ice.*;
 
 public class Server {
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class Server {
 
 	    CoordinadorI publisher = new CoordinadorI(); 
 
-	    adapter.add(publisher, Util.stringToIdentity("Publisher"));
+	    adapter.add(publisher, Util.stringToIdentity("Coordinador"));
 	    adapter.activate();
 
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
