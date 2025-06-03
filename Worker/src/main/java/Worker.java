@@ -25,6 +25,7 @@ public class Worker {
             }
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
+            System.out.println("Ingrese el nombre del trabajador: ");
             String name = reader.readLine(); 
 
             coordinador.addWorker(name, workerPrx);

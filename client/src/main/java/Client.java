@@ -26,20 +26,32 @@ public class Client {
             CoordinadorPrx coordinador = CoordinadorPrx.checkedCast(communicator.propertyToProxy("coordinador.proxy"));
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
-            // String name = reader.readLine(); 
+            
             
             if (coordinador == null) {
                 System.err.println("No se pudo obtener proxy del coordinador.");
                 return;
             }
-            
-            System.out.println("Ingrese el número de inicio :");
             int start = 1;
             System.out.println("Ingrese el número de fin :");
             int end = Integer.parseInt(reader.readLine());
             System.out.println("Ingrese el número de trabajadores :");
             int numWorkers = Integer.parseInt(reader.readLine());
-            coordinador.buscarPerfectos(start, end, numWorkers, clienteCallbackPrx);
+            while (numWorkers <= 0) {
+                System.out.println("El número de trabajadores debe ser mayor que 0. Intente nuevamente:");
+                numWorkers = Integer.parseInt(reader.readLine());
+            }
+            System.out.println("De que forma desea que trabajen los trabajadores? (1: Sincronica, 2: Asincreonica)");
+            int sinc = Integer.parseInt(reader.readLine());
+            while (sinc != 1 && sinc != 2) {
+                System.out.println("Opción inválida. Ingrese 1 para Sincronica o 2 para Asincrónica:");
+                sinc = Integer.parseInt(reader.readLine());
+            }
+            if(sinc == 1){
+                coordinador.buscarPerfectos(start, end, numWorkers, clienteCallbackPrx);
+            } else {
+                coordinador.buscarAsyncPerfectos(start, end, numWorkers, clienteCallbackPrx);
+            }
 
             communicator.waitForShutdown();
     	}

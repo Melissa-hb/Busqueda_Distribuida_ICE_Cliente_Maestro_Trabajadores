@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,17 +80,75 @@ public class CoordinadorI implements Coordinador{
                 i++;
             }
 
-            // 3. Tiempo total
+            // Tiempo total
             long fin = System.currentTimeMillis();
             double tiempo = (fin - inicio) / 1000.0;
 
-            // 4. Enviar resultados al cliente
+            // Enviar resultados al cliente
             int[] finalResult = resultados.stream().mapToInt(n -> n).toArray();
             callback.recibirResultado(finalResult, tiempo);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    @Override
+    public void buscarAsyncPerfectos(int start, int end, int numWorkers, ClientCallbackPrx callback, Current current) {
+        System.out.println("Iniciando búsqueda de perfectos...");
+
+        //Obtener los rangos
+        int[] rangos = crearRangosWorkers(end - start, numWorkers, current);
+
+        List<Integer> resultados = Collections.synchronizedList(new ArrayList<>());
+        List<Thread> threads = new ArrayList<>();
+        long inicio = System.currentTimeMillis();
+
+        try {
+            // Llamar a los workers registrados en paralelo
+            int i = 0;
+            for (Map.Entry<String, WorkerPrx> entry : workers.entrySet()) {
+                if (i >= numWorkers) break;
+
+                int rangoInicio = rangos[i] + start;
+                int rangoFin = rangos[i + 1] + start;
+
+                WorkerPrx worker = entry.getValue();
+                System.out.println("Worker " + entry.getKey() + " -> " + rangoInicio + " a " + rangoFin);
+
+                Thread t = new Thread(() -> {
+                    try {
+                        int[] parcial = worker.encontrarPerfectos(rangoInicio, rangoFin);
+                        for (int n : parcial) {
+                            resultados.add(n);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                threads.add(t);
+                t.start();
+                i++;
+            }
+
+            // Esperar que todos los hilos terminen
+            for (Thread t : threads) {
+                t.join();
+            }
+
+            //  Medir tiempo
+            long fin = System.currentTimeMillis();
+            double tiempo = (fin - inicio) / 1000.0;
+
+            // Enviar resultados al cliente
+            int[] finalResult = resultados.stream().mapToInt(n -> n).toArray();
+            callback.recibirResultado(finalResult, tiempo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void notifyWorker(String name, String msg){
