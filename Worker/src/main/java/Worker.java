@@ -1,7 +1,3 @@
-import com.zeroc.Ice.Communicator;
-import com.zeroc.Ice.ObjectAdapter;
-import com.zeroc.Ice.ObjectPrx;
-import com.zeroc.Ice.Util;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +17,6 @@ public class Worker {
             adapter.activate(); 
 
             WorkerPrx workerPrx = WorkerPrx.checkedCast(proxys);
-
 
             CoordinadorPrx coordinador = CoordinadorPrx.checkedCast(communicator.propertyToProxy("coordinador.proxy")); 
 

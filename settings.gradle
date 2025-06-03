@@ -8,3 +8,4 @@
 rootProject.name = 'Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores'
 include 'client'
 include 'server'
+include 'worker'
