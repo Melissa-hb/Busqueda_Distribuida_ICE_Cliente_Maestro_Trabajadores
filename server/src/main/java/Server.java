@@ -26,7 +26,7 @@ public class Server {
 		    continue; 
 		}
 		String[] command = msj.split("::"); 
-		publisher.notifySuscriber(command[0], command[1]);
+		publisher.notifyWorker(command[0], command[1]);
 	    	
 	    }
 	    reader.close();
