@@ -72,6 +72,7 @@ Donde para verificar la conexión futura entre worker y server, desde el server 
 
 ```bash
 Puede andar un mensaje al cualquier worker conectado con el formato NombreWorker::Mensaje
+Servidor iniciado, esperando la conexion de los trabajadores...
 ```
 
 Despues se debera ejecutar al menos un worker con la siguiente linea de comando.
