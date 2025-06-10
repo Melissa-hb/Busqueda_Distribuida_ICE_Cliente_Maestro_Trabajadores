@@ -1,19 +1,16 @@
 <state>
-  <timestamp value='1748825077174' />
+  <timestamp value='1749575535656' />
   <sourceSet name='default'>
-    <source name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\App.ice'>
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\Suscriber.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\Publisher.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Perfectos\Worker.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Perfectos\Coordinador.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\SuscriberPrx.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\_SuscriberPrxI.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\PublisherPrx.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\_PublisherPrxI.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Perfectos\WorkerPrx.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Perfectos\_WorkerPrxI.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Perfectos\CoordinadorPrx.java' />
-      <file name='C:\Users\USUARIO\OneDrive\Documentos\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Perfectos\_CoordinadorPrxI.java' />
+    <source name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\App.ice'>
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\ClientCallback.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\Worker.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\Coordinador.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\ClientCallbackPrx.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\_ClientCallbackPrxI.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\WorkerPrx.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\_WorkerPrxI.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\CoordinadorPrx.java' />
+      <file name='C:\Users\USUARIO\Desktop\compunet\ProyectoFinalCompu\Busqueda_Distribuida_ICE_Cliente_Maestro_Trabajadores\client\build\generated-src\Demo\_CoordinadorPrxI.java' />
     </source>
     <arg value='C:\Program Files\ZeroC\Ice-3.7.10\\bin\slice2java.exe' />
     <arg value='-IC:\Program Files\ZeroC\Ice-3.7.10\\slice' />
