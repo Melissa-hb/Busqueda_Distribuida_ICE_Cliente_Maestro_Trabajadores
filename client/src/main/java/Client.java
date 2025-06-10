@@ -33,18 +33,18 @@ public class Client {
                 return;
             }
             int start = 1;
-            System.out.println("Ingrese el número de fin :");
+            System.out.println("Ingrese el rango superior:");
             int end = Integer.parseInt(reader.readLine());
-            System.out.println("Ingrese el número de trabajadores :");
+            System.out.println("Ingrese el numero de trabajadores:");
             int numWorkers = Integer.parseInt(reader.readLine());
             while (numWorkers <= 0) {
-                System.out.println("El número de trabajadores debe ser mayor que 0. Intente nuevamente:");
+                System.out.println("El numero de trabajadores debe ser mayor que 0. Intente nuevamente:");
                 numWorkers = Integer.parseInt(reader.readLine());
             }
-            System.out.println("De que forma desea que trabajen los trabajadores? (1: Sincronica, 2: Asincreonica)");
+            System.out.println("De que forma desea que trabajen los trabajadores? (1: Sincronica, 2: Asincronica)");
             int sinc = Integer.parseInt(reader.readLine());
             while (sinc != 1 && sinc != 2) {
-                System.out.println("Opción inválida. Ingrese 1 para Sincronica o 2 para Asincrónica:");
+                System.out.println("Opción invalida. Ingrese 1 para Sincronica o 2 para Asincrónica:");
                 sinc = Integer.parseInt(reader.readLine());
             }
             if(sinc == 1){

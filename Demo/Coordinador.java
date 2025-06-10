@@ -19,6 +19,8 @@ public interface Coordinador extends com.zeroc.Ice.Object
 {
     void buscarPerfectos(int start, int end, int numWorkers, ClientCallbackPrx callback, com.zeroc.Ice.Current current);
 
+    void buscarAsyncPerfectos(int start, int end, int numWorkers, ClientCallbackPrx callback, com.zeroc.Ice.Current current);
+
     void addWorker(String nombre, WorkerPrx worker, com.zeroc.Ice.Current current);
 
     /** @hidden */
@@ -76,6 +78,30 @@ public interface Coordinador extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_buscarAsyncPerfectos(Coordinador obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        int iceP_start;
+        int iceP_end;
+        int iceP_numWorkers;
+        ClientCallbackPrx iceP_callback;
+        iceP_start = istr.readInt();
+        iceP_end = istr.readInt();
+        iceP_numWorkers = istr.readInt();
+        iceP_callback = ClientCallbackPrx.uncheckedCast(istr.readProxy());
+        inS.endReadParams();
+        obj.buscarAsyncPerfectos(iceP_start, iceP_end, iceP_numWorkers, iceP_callback, current);
+        return inS.setResult(inS.writeEmptyParams());
+    }
+
+    /**
+     * @hidden
+     * @param obj -
+     * @param inS -
+     * @param current -
+     * @return -
+    **/
     static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_addWorker(Coordinador obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
@@ -93,6 +119,7 @@ public interface Coordinador extends com.zeroc.Ice.Object
     final static String[] _iceOps =
     {
         "addWorker",
+        "buscarAsyncPerfectos",
         "buscarPerfectos",
         "ice_id",
         "ice_ids",
@@ -119,21 +146,25 @@ public interface Coordinador extends com.zeroc.Ice.Object
             }
             case 1:
             {
-                return _iceD_buscarPerfectos(this, in, current);
+                return _iceD_buscarAsyncPerfectos(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return _iceD_buscarPerfectos(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 5:
+            {
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+            }
+            case 6:
             {
                 return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }

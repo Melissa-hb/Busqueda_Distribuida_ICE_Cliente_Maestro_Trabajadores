@@ -59,6 +59,48 @@ public interface CoordinadorPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
+    default void buscarAsyncPerfectos(int start, int end, int numWorkers, ClientCallbackPrx callback)
+    {
+        buscarAsyncPerfectos(start, end, numWorkers, callback, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default void buscarAsyncPerfectos(int start, int end, int numWorkers, ClientCallbackPrx callback, java.util.Map<String, String> context)
+    {
+        _iceI_buscarAsyncPerfectosAsync(start, end, numWorkers, callback, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> buscarAsyncPerfectosAsync(int start, int end, int numWorkers, ClientCallbackPrx callback)
+    {
+        return _iceI_buscarAsyncPerfectosAsync(start, end, numWorkers, callback, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> buscarAsyncPerfectosAsync(int start, int end, int numWorkers, ClientCallbackPrx callback, java.util.Map<String, String> context)
+    {
+        return _iceI_buscarAsyncPerfectosAsync(start, end, numWorkers, callback, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_start -
+     * @param iceP_end -
+     * @param iceP_numWorkers -
+     * @param iceP_callback -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_buscarAsyncPerfectosAsync(int iceP_start, int iceP_end, int iceP_numWorkers, ClientCallbackPrx iceP_callback, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "buscarAsyncPerfectos", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
+                     ostr.writeInt(iceP_start);
+                     ostr.writeInt(iceP_end);
+                     ostr.writeInt(iceP_numWorkers);
+                     ostr.writeProxy(iceP_callback);
+                 }, null);
+        return f;
+    }
+
     default void addWorker(String nombre, WorkerPrx worker)
     {
         addWorker(nombre, worker, com.zeroc.Ice.ObjectPrx.noExplicitContext);

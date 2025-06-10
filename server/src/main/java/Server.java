@@ -19,10 +19,10 @@ public class Server {
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
 	    String msj = ""; 
 
-	    System.out.println("Type a message in format NameSuscribe::Message");
+	    System.out.println("Puede andar un mensaje al cualquier worker conectado con el formato NombreWorker::Mensaje");
 	    while ((msj = reader.readLine()) != null) {
 		if(!msj.contains("::")){
-		    System.out.println("Incorrect format ");
+		    System.out.println("Formato incorrecto. Debe ser NombreWorker::Mensaje");
 		    continue; 
 		}
 		String[] command = msj.split("::"); 
