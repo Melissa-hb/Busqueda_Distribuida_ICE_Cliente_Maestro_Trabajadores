@@ -54,9 +54,10 @@ public class Client {
             }
 
             communicator.waitForShutdown();
-    	}
-	catch(IOException e){
+    	}catch (NumberFormatException e) {
+            System.err.println("Entrada inválida. Se esperaba un número.");
+        }catch(IOException e){
 	    e.printStackTrace();
-	}
+	    }
     }
 }
