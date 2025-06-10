@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.zeroc.Ice.Current;
+import com.zeroc.Ice.LocalException;
+import com.zeroc.Ice.ObjectNotExistException;
+
 import Demo.*;
 public class CoordinadorI implements Coordinador{
 
@@ -12,19 +15,6 @@ public class CoordinadorI implements Coordinador{
 	    workers = new HashMap<>(); 
     }
 
-    /* 
-    @Override
-    public void addSuscriber(String name,  SuscriberPrx suscriber,  Current current) {
-        System.out.println("New Suscriber has been added ");
-        suscribers.put(name, suscriber); 
-    	
-    }
-
-    @Override
-    public void removeSuscriber(String name, Current current) {
-        suscribers.remove(name); 
-        System.out.println("Remove Suscriber: " + name);
-    }*/
     @Override
     public void addWorker(String name, WorkerPrx worker, Current current) {
         System.out.println("New Worker has been added: " + name);
@@ -70,7 +60,7 @@ public class CoordinadorI implements Coordinador{
                 int rangoFin = rangos[i + 1] + start;
 
                 System.out.println("Worker " + entry.getKey() + " -> " + rangoInicio + " a " + rangoFin);
-
+                
                 // Llamar remotamente a cada worker
                 int[] parcial = entry.getValue().encontrarPerfectos(rangoInicio, rangoFin);
                 for (int n : parcial) {
@@ -121,6 +111,13 @@ public class CoordinadorI implements Coordinador{
                         for (int n : parcial) {
                             resultados.add(n);
                         }
+                    }catch (ObjectNotExistException e) {
+                        System.err.println("Worker " + entry.getKey() + " ya no existe. Se eliminará.");
+                        synchronized (workers) {
+                        workers.remove(entry.getKey());
+                        }
+                    }catch (LocalException e) {
+                    System.err.println("Error de comunicación con Worker " + entry.getKey() + ": " + e.getMessage());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -133,7 +130,11 @@ public class CoordinadorI implements Coordinador{
 
             // Esperar que todos los hilos terminen
             for (Thread t : threads) {
-                t.join();
+                try {
+                    t.join();
+                } catch (InterruptedException e) {
+                    System.err.println("Error al esperar que el hilo termine: " + e.getMessage());
+                }
             }
 
             //  Medir tiempo
@@ -142,7 +143,14 @@ public class CoordinadorI implements Coordinador{
 
             // Enviar resultados al cliente
             int[] finalResult = resultados.stream().mapToInt(n -> n).toArray();
-            callback.recibirResultado(finalResult, tiempo);
+            try{
+                callback.recibirResultado(finalResult, tiempo);
+            } catch (LocalException e) {
+                System.err.println("Error de comunicación con el cliente: " + e.getMessage());
+            } catch (Exception e) {
+                System.err.println("Error inesperado al enviar resultados al cliente: " + e.getMessage());
+            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,8 +159,16 @@ public class CoordinadorI implements Coordinador{
 
 
 
-    public void notifyWorker(String name, String msg){
+    public void notifyWorker(String name, String msg) {
         WorkerPrx worker = workers.get(name);
-        worker.notify();
+        if (worker != null) {
+            try {
+                worker.notify(); 
+            } catch (Exception e) {
+                System.err.println("No se pudo notificar al worker " + name + ": " + e.getMessage());
+            }
+        } else {
+            System.out.println("El worker " + name + " no se encuentra registrado.");
+        }
     }
 }
